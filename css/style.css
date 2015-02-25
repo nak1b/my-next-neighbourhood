@@ -1,0 +1,7 @@
+.form-container{
+	background:rgba(0,0,0,0.6);
+    border: 1px solid #414141;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 80px;
+}
