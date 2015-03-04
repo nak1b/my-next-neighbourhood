@@ -3,7 +3,10 @@ $(function(){
 	var $body = $("body");
 	var $bgImg = $("#bgImg");
 	var $nytimesLinks = $("#ny-times-articles");
+	var $wikiLinks = $("#wikipedia-links");
+
 	$nytimesLinks.empty();
+	$wikiLinks.empty();
 
 	function loadData(){
 		
@@ -30,7 +33,7 @@ $(function(){
 			//Adding Articles To NY Field
 			for(article in data.response.docs)
 			{
-				console.log(data.response.docs[article]);
+				//console.log(data.response.docs[article]);
 				var link = "<a class='list-group-item' href='" + data.response.docs[article].web_url + "'>";
 				link +=  "<h4 class='list-group-item-heading'>" + data.response.docs[article].headline.main + "</h4>";
 				
@@ -39,11 +42,33 @@ $(function(){
 					link += "<p class='list-group-item-text'>" +  data.response.docs[article].lead_paragraph + "</p>"
 				
             	$("#ny-times-articles").append(link);
-				
-			}
-			
+			}			
 		});
+
+
+		//Wiki Articles
+		var wikiApi = "http://en.wikipedia.org/w/api.php?format=json&action=opensearch&search=" + city + "&callback=wikiCallback";
 		
+		$.ajax({
+			url: wikiApi,
+			dataType: "jsonp",
+			success: function(data){
+				//empty the wiki link div
+				$wikiLinks.empty();
+
+				//append wiki heading
+				$("#wikipedia-links").append("<a href='#' class='list-group-item' id='articles-heading'>Wiki Links</a>");
+				
+				//add wiki articles
+				var articleList = data[1];
+	            for(var i=0; i<articleList.length; i++)
+	            {
+	                var article = "<a class='list-group-item' href='" + data[3][i] + "'>" + data[1][i] + "</a>";
+	                $("#wikipedia-links").append(article);
+	            }
+
+			}
+		});
 
 		//preventing default submission
 		return false;
