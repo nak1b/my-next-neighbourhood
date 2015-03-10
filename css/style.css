@@ -34,6 +34,15 @@
 	font-weight: bold;
 	font-size: 1.2em;
 }
+#find{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	float: right;
+}
 
+.form-container input{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
 
