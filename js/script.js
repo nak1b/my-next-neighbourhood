@@ -53,6 +53,8 @@ $(function(){
 			{
 					$nytimesLinks.empty();
 					$wikiLinks.empty();
+					$bgImg.attr("src", "img/background.jpg");
+
 			}
 			
 		});
@@ -89,6 +91,8 @@ $(function(){
 				{
 						$nytimesLinks.empty();
 						$wikiLinks.empty();
+						$bgImg.attr("src", "img/background.jpg");
+
 				}
 				
 
